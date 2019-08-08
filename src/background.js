@@ -31,6 +31,7 @@ const updateTabURL = (url, tab) => {
       chrome.tabs.create({url: newUrl, index:tab.index+1})
     }
   }
+  shiftPressed = false
 }
 
 chrome.pageAction.onClicked.addListener(tab => {

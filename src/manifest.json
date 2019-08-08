@@ -2,7 +2,7 @@
   "name": "revddit linker",
   "short_name": "revddit link",
   "description": "Provides an easy way to jump between viewing content on reddit and revddit.",
-  "version": "0.0.0.2",
+  "version": "0.0.0.3",
   "permissions": [
     "contextMenus",
     "tabs"

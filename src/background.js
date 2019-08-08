@@ -1,5 +1,6 @@
 const regex_site = /^https?:\/\/(?:[^.]+\.)?(rev?ddit)\.com/
 const reddit_title = 'View on reddit'
+let shiftPressed = false;
 
 
 const getBrowser = () => {
@@ -17,19 +18,23 @@ const nothing = () => {
   if (chrome.runtime.lastError) {}
 }
 
-const updateTabURL = (url) => {
+const updateTabURL = (url, tab) => {
   const matches = url.match(regex_site)
   if (matches) {
-    if (matches[1] === 'reddit') {
-      chrome.tabs.update({url: url.replace('reddit.com', 'revddit.com')})
+    let newUrl = url.replace('reddit.com', 'revddit.com')
+    if (matches[1] === 'revddit') {
+      newUrl = url.replace('revddit.com', 'reddit.com')
+    }
+    if (! shiftPressed) {
+      chrome.tabs.update({url: newUrl})
     } else {
-      chrome.tabs.update({url: url.replace('revddit.com', 'reddit.com')})
+      chrome.tabs.create({url: newUrl, index:tab.index+1})
     }
   }
 }
 
 chrome.pageAction.onClicked.addListener(tab => {
-  updateTabURL(tab.url)
+  updateTabURL(tab.url, tab)
 })
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -77,6 +82,18 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
     if (info.linkUrl) {
       url = info.linkUrl
     }
-    updateTabURL(url)
+    updateTabURL(url, tab)
   }
+});
+
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+    switch(request.type){
+        case 'shiftDown':
+            shiftPressed = true;
+            break;
+        case 'shiftUp':
+            shiftPressed = false;
+            break;
+    }
 });

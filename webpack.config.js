@@ -8,7 +8,8 @@ module.exports = {
   mode,
   devtool: "inline-source-map",
   entry: {
-    background: './src/background.js'
+    background: './src/background.js',
+    content: './src/content.js'
   },
   output: {
     publicPath: ".",

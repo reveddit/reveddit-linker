@@ -15,7 +15,7 @@
     "webpack-extension-reloader": "^1.1.0"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack; (cd dist && zip -r ../revddit-linker.zip .)",
+    "build": "NODE_ENV=production webpack; (cd dist && zip -r ../extension.zip .)",
     "start": "NODE_ENV=development webpack --config webpack.config.js --watch"
   }
 }

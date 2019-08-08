@@ -1,26 +1,30 @@
 {
-    "name": "revddit linker",
-    "short_name": "revddit link",
-    "description": "Provides an easy way to jump between viewing content on reddit and revddit.",
-    "version": "0.0.0.1",
-    "permissions": [
-        "contextMenus",
-        "tabs"
-    ],
-    "icons": { "128": "icons/128.png",
-               "48": "icons/48.png",
-               "16": "icons/16.png"
+  "name": "revddit linker",
+  "short_name": "revddit link",
+  "description": "Provides an easy way to jump between viewing content on reddit and revddit.",
+  "version": "0.0.0.2",
+  "permissions": [
+    "contextMenus",
+    "tabs"
+  ],
+  "icons": { "128": "icons/128.png",
+    "48": "icons/48.png",
+    "16": "icons/16.png"
+  },
+  "page_action": {
+    "default_icon": {
+      "16": "icons/16.png",
+      "24": "icons/24.png",
+      "32": "icons/32.png"
     },
-    "page_action": {
-        "default_icon": {
-            "16": "icons/16.png",
-            "24": "icons/24.png",
-            "32": "icons/32.png"
-        },
-        "default_title" : "View on revddit"
-    },
-    "background": {
-        "scripts": ["background.js"]
-    },
-    "manifest_version": 2
+    "default_title" : "View on revddit"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [{
+    "matches": ["https://revddit.com/*", "https://*.reddit.com/*"],
+    "js": ["content.js"]
+  }],
+  "manifest_version": 2
 }

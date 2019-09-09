@@ -1,5 +1,5 @@
 # revddit-linker
-A browser extension for quickly jumping between reddit and revddit
+A browser extension for quickly jumping between reddit and revddit. Available for [Chrome](https://chrome.google.com/webstore/detail/revddit-linker/jgnigeenijnjlahckhfomimnjadmkmah) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/revddit-linker/)
 
 ## Building from source
 

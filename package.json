@@ -15,7 +15,12 @@
     "webpack-extension-reloader": "^1.1.0"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack; (cd dist && zip -r ../extension.zip .)",
-    "start": "NODE_ENV=development webpack --config webpack.config.js --watch"
+    "build": "yarn clean && yarn build-all",
+    "start": "yarn start-chrome",
+    "build-all": "yarn build-chrome && yarn build-firefox",
+    "build-chrome": "NODE_ENV=production FORCHROME=true webpack; (cd dist-chrome && zip -r ../chrome.zip .)",
+    "build-firefox": "NODE_ENV=production FORFIREFOX=true webpack; (cd dist-firefox && zip -r ../firefox.zip .)",
+    "start-chrome": "NODE_ENV=development FORCHROME=true webpack --config webpack.config.js --watch",
+    "clean": "rimraf dist-chrome dist-firefox dist-dev-chrome dist-dev-firefox chrome.zip firefox.zip"
   }
 }

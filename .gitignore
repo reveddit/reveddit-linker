@@ -1,4 +1,6 @@
 dist/
+dist-*/
 node_modules/
 *.zip
+*.log
 screenshot*

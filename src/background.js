@@ -1,13 +1,13 @@
-const regex_site = /^https?:\/\/(?:[^.]+\.)?(rev?ddit)\.com/
+const regex_site = /^https?:\/\/(?:[^.]+\.)?(re(?:ve)?ddit)\.com/
 const reddit_title = 'View on reddit'
 let shiftPressed = false;
 
 const updateTabURL = (url, tab) => {
   const matches = url.match(regex_site)
   if (matches) {
-    let newUrl = url.replace('reddit.com', 'revddit.com')
-    if (matches[1] === 'revddit') {
-      newUrl = url.replace('revddit.com', 'reddit.com')
+    let newUrl = url.replace('reddit.com', 'reveddit.com')
+    if (matches[1] === 'reveddit') {
+      newUrl = url.replace('reveddit.com', 'reddit.com')
     }
     if (! shiftPressed) {
       chrome.tabs.update({url: newUrl})
@@ -22,13 +22,13 @@ chrome.browserAction.onClicked.addListener(tab => {
   updateTabURL(tab.url, tab)
 })
 
-const contextMenu_id = 'revddit-link'
+const contextMenu_id = 'reveddit-link'
 chrome.contextMenus.removeAll(() => {
   chrome.contextMenus.create({
     id: contextMenu_id,
-    title: 'View on re(v)ddit',
+    title: 'View on re(ve)ddit',
     contexts: ['link','page'],
-    documentUrlPatterns: ['https://*.reddit.com/*', 'https://*.revddit.com/*', 'https://*.reveddit.com/*']
+    documentUrlPatterns: ['https://*.reddit.com/*', 'https://*.reveddit.com/*']
   })
 })
 chrome.contextMenus.onClicked.addListener(function(info, tab) {

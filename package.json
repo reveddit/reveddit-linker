@@ -1,7 +1,7 @@
 {
-  "name": "revddit-linker",
+  "name": "reveddit-linker",
   "version": "1.0.0",
-  "description": "Provides an easy way to jump between viewing content on reddit and revddit.",
+  "description": "Provides an easy way to jump between viewing content on reddit and reveddit.",
   "main": "index.js",
   "license": "GPL-3.0",
   "private": true,

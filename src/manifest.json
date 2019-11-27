@@ -1,8 +1,8 @@
 {
-  "name": "revddit linker",
-  "short_name": "revddit link",
-  "description": "Provides an easy way to jump between viewing content on reddit and revddit.",
-  "version": "0.0.0.4",
+  "name": "reveddit linker",
+  "short_name": "reveddit link",
+  "description": "Provides an easy way to jump between viewing content on reddit and reveddit.",
+  "version": "0.0.0.5",
   "permissions": [
     "contextMenus",
     "activeTab"
@@ -17,13 +17,13 @@
       "24": "icons/24.png",
       "32": "icons/32.png"
     },
-    "default_title" : "View on re(v)ddit"
+    "default_title" : "View on re(ve)ddit"
   },
   "background": {
     "scripts": ["background.js"]
   },
   "content_scripts": [{
-    "matches": ["https://*.revddit.com/*", "https://*.reddit.com/*", "https://*.reveddit.com/*"],
+    "matches": ["https://*.reveddit.com/*", "https://*.reddit.com/*"],
     "js": ["content.js"]
   }],
   "manifest_version": 2

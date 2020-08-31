@@ -2,7 +2,7 @@
   "name": "reveddit linker",
   "short_name": "reveddit link",
   "description": "Provides an easy way to jump between viewing content on reddit and reveddit.",
-  "version": "0.0.0.5",
+  "version": "0.0.0.6",
   "permissions": [
     "contextMenus",
     "activeTab"

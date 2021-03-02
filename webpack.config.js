@@ -15,6 +15,29 @@ if (process.env.FORFIREFOX) {
     built_for = '"firefox"'
 }
 
+function modify(buffer) {
+    // copy-webpack-plugin passes a buffer
+    // this line, buffer.toString(), causes this error if this filename ends in babel.js:
+    //     Cannot find module 'core-js/modules/es.object.to-string'
+    // maybe babel converts it incorrectly?
+    var manifest = JSON.parse(buffer.toString());
+    if (process.env.FORFIREFOX) {
+        let id = 'linker-stable@reveddit.com'
+        manifest.browser_specific_settings = {
+            "gecko": { id }
+        }
+        delete manifest.host_permissions
+        manifest.permissions.push("activeTab")
+        manifest.manifest_version = 2
+        manifest.background.scripts = [manifest.background.service_worker]
+        delete manifest.background.service_worker
+        delete Object.assign(manifest, {browser_action: manifest.action }).action
+    }
+    // pretty print to JSON with two spaces
+    return JSON.stringify(manifest, null, 2);
+}
+
+
 module.exports = {
   mode,
   devtool: "inline-source-map",
@@ -33,7 +56,13 @@ module.exports = {
       manifest: manifestPath
     }),
     new CopyWebpackPlugin([
-      { from: "./src/manifest.json" },
+      { from: "./src/manifest.json",
+        to:   distPath,
+        // from https://stackoverflow.com/a/54700817/2636364
+        transform (content, path) {
+            return modify(content)
+        }
+      },
       { from: "./src/icons", to:'icons/' }
     ]),
     new webpack.DefinePlugin({

@@ -1,17 +1,20 @@
 {
   "name": "reveddit linker",
   "short_name": "reveddit link",
-  "description": "Provides an easy way to jump between viewing content on reddit and reveddit.",
-  "version": "0.0.0.6",
+  "description": "Jump between viewing content on reddit and reveddit.",
+  "version": "0.0.0.7",
   "permissions": [
-    "contextMenus",
-    "activeTab"
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://*.reddit.com/*",
+    "https://*.reveddit.com/*"
   ],
   "icons": { "128": "icons/128.png",
     "48": "icons/48.png",
     "16": "icons/16.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "16": "icons/16.png",
       "24": "icons/24.png",
@@ -20,11 +23,11 @@
     "default_title" : "View on re(ve)ddit"
   },
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "background.js"
   },
   "content_scripts": [{
     "matches": ["https://*.reveddit.com/*", "https://*.reddit.com/*"],
     "js": ["content.js"]
   }],
-  "manifest_version": 2
+  "manifest_version": 3
 }

@@ -1,5 +1,6 @@
 const regex_site = /^https?:\/\/(?:[^.]+\.)?(re(?:ve)?ddit)\.com(.*)/
 let shiftPressed = false;
+const ACTION_API = __BUILT_FOR__ === 'chrome' ? 'action' : 'browserAction'
 
 // from reveddit website utils.js
 const PATHS_SUB = ['v','r']
@@ -31,7 +32,7 @@ const updateTabURL = (url, tab) => {
   shiftPressed = false
 }
 
-chrome.browserAction.onClicked.addListener(tab => {
+chrome[ACTION_API].onClicked.addListener(tab => {
   updateTabURL(tab.url, tab)
 })
 

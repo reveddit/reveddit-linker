@@ -22,5 +22,8 @@
     "build-firefox": "NODE_ENV=production FORFIREFOX=true webpack; (cd dist-firefox && zip -r ../firefox.zip .)",
     "start-chrome": "NODE_ENV=development FORCHROME=true webpack --config webpack.config.js --watch",
     "clean": "rimraf dist-chrome dist-firefox dist-dev-chrome dist-dev-firefox chrome.zip firefox.zip"
+  },
+  "dependencies": {
+    "arrive": "^2.4.1"
   }
 }

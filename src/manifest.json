@@ -2,7 +2,7 @@
   "name": "reveddit linker",
   "short_name": "reveddit link",
   "description": "Jump between viewing content on reddit and reveddit.",
-  "version": "0.0.0.7",
+  "version": "0.0.0.8",
   "permissions": [
     "contextMenus"
   ],
@@ -27,7 +27,7 @@
   },
   "content_scripts": [{
     "matches": ["https://*.reveddit.com/*", "https://*.reddit.com/*"],
-    "js": ["content.js"]
+    "js": ["lib/jquery-3.2.1.min.js", "lib/arrive.js", "content.js"]
   }],
   "manifest_version": 3
 }

@@ -7,6 +7,7 @@ const COMMON = require("./webpack.common.js")
 const mode = process.env.NODE_ENV;
 const distFolder = COMMON.getDistFolderName(mode, process.env.FORCHROME, process.env.FORFIREFOX)
 const distPath = path.join(__dirname, distFolder)
+const distLibPath = path.join(distPath, 'lib')
 
 const manifestPath = path.resolve(__dirname, "./src/manifest.json")
 
@@ -63,7 +64,9 @@ module.exports = {
             return modify(content)
         }
       },
-      { from: "./src/icons", to:'icons/' }
+      { from: "./src/icons", to:'icons/' },
+      { context: 'lib/', from: "*", to: distLibPath },
+      { context: 'node_modules/arrive/src/', from: 'arrive.js', to: distLibPath },
     ]),
     new webpack.DefinePlugin({
       __BUILT_FOR__: built_for

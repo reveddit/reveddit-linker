@@ -23,10 +23,11 @@ function modify(buffer) {
     // maybe babel converts it incorrectly?
     var manifest = JSON.parse(buffer.toString());
     if (process.env.FORFIREFOX) {
-        let id = 'linker-stable@reveddit.com'
-        manifest.browser_specific_settings = {
-            "gecko": { id }
-        }
+        // setting this now presents an error when uploading
+        // let id = 'linker-stable@reveddit.com'
+        // manifest.browser_specific_settings = {
+        //     "gecko": { id }
+        // }
         delete manifest.host_permissions
         manifest.permissions.push("activeTab")
         manifest.manifest_version = 2

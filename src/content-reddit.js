@@ -1,4 +1,4 @@
-import {getFullIDsFromPath} from './common.js'
+import {getFullIDsFromPath, SimpleURLSearchParams} from './common.js'
 
 export const redditModifications = () => {
   const isNewReddit = document.querySelector('#SHORTCUT_FOCUSABLE_DIV') !== null
@@ -28,9 +28,9 @@ const addLinks_oldReddit = (elements) => {
       if (! buttons) return
       const isComment = element.classList.contains('comment')
       let commentRemoved = false
-      let path = permalink
+      const searchParams = new SimpleURLSearchParams(location.search)
       if (isComment) {
-        path += '?context=3'
+        searchParams.set('context', 3)
         let commentBody = ''
         const bodyElement = element.querySelector('.usertext-body')
         const userTextElement = element.querySelector('.usertext')
@@ -44,9 +44,11 @@ const addLinks_oldReddit = (elements) => {
           ) {
             commentRemoved = true
         }
+      } else {
+        searchParams.delete('context')
       }
       if (! isComment || commentRemoved) {
-        const newButton = $(`<a href="https://www.reveddit.com${path}">`).html('<span style="font-style:italic; text-decoration: underline">rev</span>eddit').wrap('<li>').parent()
+        const newButton = $(`<a href="https://www.reveddit.com${permalink+searchParams.toString()}">`).html('<span style="font-style:italic; text-decoration: underline">rev</span>eddit').wrap('<li>').parent()
         if (isComment) {
           $(buttons).prepend(newButton)
         } else {

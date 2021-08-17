@@ -1,8 +1,8 @@
 {
   "name": "reveddit linker",
   "short_name": "reveddit link",
-  "description": "Jump between viewing content on reddit and reveddit.",
-  "version": "0.0.0.8",
+  "description": "Switch between viewing content on reddit and reveddit.",
+  "version": "0.0.0.9",
   "permissions": [
     "contextMenus"
   ],
